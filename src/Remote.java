@@ -1,16 +1,27 @@
-public class Remote {
-    private DougDoor dougDoor;
+import java.util.Timer;
+import java.util.TimerTask;
 
-    public Remote(DougDoor dougDoor) {
-        this.dougDoor = dougDoor;
+public class Remote {
+    private DougDoor door;
+
+    public Remote(DougDoor door) {
+        this.door = door;
     }
 
     public void pressButton() {
         System.out.println("Pressing the remote control button...");
-        if(dougDoor.isOpen()) {
-            dougDoor.close();
+        if(door.isOpen()) {
+            door.close();
         } else {
-            dougDoor.open();
+            door.open();
+            // Close door automatically
+            final Timer timer = new Timer();
+            timer.schedule(new TimerTask() {
+                public void run() {
+                    door.close();
+                    timer.cancel();
+                }
+            }, 5000);
         }
     }
 }
