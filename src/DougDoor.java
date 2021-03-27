@@ -1,7 +1,7 @@
-public class DogDoor {
+public class DougDoor {
     private boolean open;
 
-    public DogDoor() {
+    public DougDoor() {
         this.open = false;
     }
 
