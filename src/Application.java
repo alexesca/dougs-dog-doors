@@ -1,12 +1,14 @@
 public class Application {
     public static void main(String[] args) {
         DougDoor door = new DougDoor();
+        door.addAllowedBark(new Bark("rowfl"));
+        door.addAllowedBark(new Bark("woof"));
+        door.addAllowedBark(new Bark("yip"));
         Remote remote = new Remote(door);
-        BarkRecognizer recognizer = new BarkRecognizer();
+        BarkRecognizer recognizer = new BarkRecognizer(door);
 
         System.out.println("Fido barks to go outside...");
-        recognizer.recognize("Woof");
-        remote.pressButton();
+        recognizer.recognize(new Bark("Wooggf"));
         System.out.println("\nFid has gone outside...");
         System.out.println("\nFido's all done...");
 
@@ -15,9 +17,7 @@ public class Application {
         } catch (InterruptedException e) { }
         System.out.println("\nbut he's stuck outside...");
         System.out.println("\nFido starts barking...");
-        recognizer.recognize("Woof");
-        System.out.println("\n... so Gina grabs the remote control.");
-        remote.pressButton();
+        recognizer.recognize(new Bark("Woof"));
         System.out.println("\nFido is inside...");
     }
 }
